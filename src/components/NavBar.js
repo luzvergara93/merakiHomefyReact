@@ -1,5 +1,6 @@
 import './NavBar.css'
 import logo2 from './logo.jpg';
+import CardWidget from './CartWidget';
 
 const NavBar = () => {
     return (
@@ -17,8 +18,11 @@ const NavBar = () => {
                     <a className="nav-link" href="/#">Deco</a>
                     <a className="nav-link" href="/#">Espejos</a>
                     <a className="nav-link" href="/#">Aromas</a>
+                    
                 </div>
+                
                 </div>
+                <CardWidget />
             </div>
         </nav>
     )

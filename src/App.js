@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/NavBar';
+import ItemListContainer from './components/ItemListContainer';
 
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <header>
         <NavBar />
+        <ItemListContainer greeting={'Bienvenidos a Meraki Homefy'} />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Meraki Homefy
@@ -21,6 +23,7 @@ function App() {
           Home Deco
         </a>
       </header>
+      
     </div>
   );
 }
