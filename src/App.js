@@ -4,12 +4,17 @@ import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 
 
+
+
+
 function App() {
   return (
     <div className="App">
       <header>
         <NavBar />
         <ItemListContainer greeting={'Bienvenidos a Meraki Homefy'} />
+        
+       
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Meraki Homefy

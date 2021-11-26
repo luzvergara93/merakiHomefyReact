@@ -1,0 +1,17 @@
+.itemCount {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.itemCount button {
+    margin: 10px;
+}
+.counter {
+    display: flex;
+    flex-direction: row;
+}
+
+.counter div {
+    margin: 10px;
+}
