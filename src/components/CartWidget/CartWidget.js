@@ -1,8 +1,8 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faShoppingCart} from '@fortawesome/free-solid-svg-icons';
-import './NavBar.css'
+import '../Navbar/NavBar.css'
 
-const CardWidget = () => {
+const CartWidget = () => {
     return (
         <div className="shoppingCart"> 
         <FontAwesomeIcon icon={faShoppingCart}> </FontAwesomeIcon>
@@ -11,4 +11,4 @@ const CardWidget = () => {
     )
 }
 
-export default CardWidget 
+export default CartWidget 

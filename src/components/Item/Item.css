@@ -1,0 +1,43 @@
+.CardItem {
+    width: 400px;
+    padding: 30px;
+    margin: 30px;
+    font-size: 10px;
+    background-color: #d4ae80;
+    border-radius: 5px;
+}
+
+.ContainerItem {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    border-radius: 25px;
+}
+
+.ItemTitle {
+    font-size: 24px;
+}
+
+.Info {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Button {
+    width: auto;
+    padding: 12px;
+    font-size: 12px;
+    background: #263548;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #FFFFFF;
+    border: none;
+}
+
+.ItemImg {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}

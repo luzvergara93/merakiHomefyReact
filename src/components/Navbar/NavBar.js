@@ -1,6 +1,7 @@
 import './NavBar.css'
-import logo2 from './logo.jpg';
-import CardWidget from './CartWidget';
+import logo2 from '../logo.jpg';
+import CartWidget from '../CartWidget/CartWidget'
+
 
 const NavBar = () => {
     return (
@@ -22,7 +23,7 @@ const NavBar = () => {
                 </div>
                 
                 </div>
-                <CardWidget />
+                <CartWidget />
             </div>
         </nav>
     )
