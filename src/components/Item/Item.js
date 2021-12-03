@@ -1,7 +1,7 @@
 import './Item.css'
 
 const Item = ({ product }) => {
-    console.log(product.img)
+    
     return (
         <div className="CardItem"> 
         <div className="ContainerItem">

@@ -1,0 +1,61 @@
+.CardItemDes {
+    width: 800px;
+    padding: 30px;
+    margin: 30px;
+    font-size: 10px;
+    background-color: #d4ae80;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.ItemDesContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.ItemTitle {
+    font-size: 36px;
+    padding-bottom: 20px;
+    
+}
+
+.Description {
+    font-size: 24px;
+}
+
+.ItemContainer {
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    align-items: flex-start;
+    justify-content:space-evenly;
+}
+
+.ItemDes {
+    display: flex;
+    flex-direction: row;
+}
+
+.Info {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Button {
+    width: 150px;
+    padding: 12px;
+    font-size: 18px;
+    background: #263548;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #FFFFFF;
+    border: none;
+}
+
+.Img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
