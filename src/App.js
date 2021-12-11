@@ -1,3 +1,6 @@
+import React from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+
 import './App.css';
 import NavBar from './components/Navbar/NavBar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
@@ -11,11 +14,20 @@ function App() {
   return (
     <div className="App">
      
+     <BrowserRouter> 
         <NavBar />
-        <ItemListContainer/>
-        <ItemDetailContainer/>
-        
-      
+        <Switch>
+          <Route exact path='/'>
+              <ItemListContainer/>
+          </Route>
+          <Route exact path='/category/:category'>
+              <ItemListContainer/>
+          </Route>
+          <Route path='/detail/:paramId'> 
+              <ItemDetailContainer/>
+            </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
