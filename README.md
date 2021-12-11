@@ -1,4 +1,74 @@
-# Getting Started with Create React App
+# Meraki Homefy  
+
+## Description
+
+This project was made for a Decoration Brand, as an e-commerce
+
+## What can you find in the code?
+
+### Products.js
+
+##### Includes
+
+- Object with list of products and their descriptions
+- Function: getProducts(): returns the list of products
+- Function: getItem(): returns one item
+- Function: getProductById(): returns the product correspondent to the requested id
+- Function: getProductByCategory(): returns the product correspondent to the requested category
+
+### Navbar.js
+
+##### Includes
+
+- Navbar with links to filter the different categories
+
+### ItemListContainer.js
+
+##### Includes
+
+- Function to get the list of products available on the app
+
+### ItemList.js
+
+##### Includes
+
+- Function to obtain the different items
+
+### Item.js
+
+##### Includes
+
+- The body of a card, in order to show the different items with their images
+- A Link that goes to the description of each item
+
+### ItemDetailContainer.js
+
+##### Includes
+
+- Function to get the description of each item
+
+### ItemDetail.js
+
+##### Includes
+
+- The body of the card including the description of each item
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Getting Started with my App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -68,3 +138,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+##
