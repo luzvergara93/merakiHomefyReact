@@ -1,6 +1,16 @@
 import './ItemDetail.css'
+import ItemCount from '../ItemCount/ItemCount'
 
-const ItemDetail = ({ product }) => {
+
+const ItemDetail = ({product}) => {
+    
+    // const Count = inputType === 'input' ? ItemCount : ButtonCount;
+    
+    
+    const OnAdd = (contador) => {
+        const carrito = carrito + contador;
+    }
+
     return (
         
         <div className="CardItemDes"> 
@@ -19,10 +29,15 @@ const ItemDetail = ({ product }) => {
                 <p className="Info">
                     Precio: {product?.price} 
                 </p>
-                <button className="Button"> Comprar ahora</button>
+                <p className="Info">
+                    Cantidad: {product?.stock} unidades
+                </p>
+                <button className="Button"> Agregar al carrito</button>
             </div>
-        
-        
+                <div>
+                     {carrito === 0 ? <ItemCount onConfirm={OnAdd} stock={product?.stock}/> : <button> Finalizar compra </button>}
+                </div>
+            
         </div>
         </div>
 
