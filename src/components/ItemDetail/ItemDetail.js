@@ -1,27 +1,35 @@
 import "./ItemDetail.css";
 import ItemCount from "../ItemCount/ItemCount";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from 'react-router-dom';
-
+import { CartContext } from '../../Context/CartContext'
 
 
 const ItemDetail = ({ product }) => {
-  const [contador, setContador] = useState(0);
-  const handleSumar = () => {
-    if (contador < product?.stock) {
-      setContador(contador + 1);
+
+  const {addItem} = useContext(CartContext);
+
+  // En value tengo todo lo que este en cache provider
+  // en lugar de value, puedo poner lo que necesite nada mas por ej {addItem}
+  // tambien lo tengo que pasar al return
+  
+  const [buy, setBuy] = useState(false);
+  const [qty, setQty] = useState(0);
+
+
+
+  const handleBuy = (qty) => {
+    setBuy(true);
+    setQty(qty);
+  }
+
+  const handlePurchase = () => {
+    addItem(product, qty);
+
     }
-  };
-  const handleRestar = () => {
-    if (contador > 0) {
-      setContador(contador - 1);
-    }
-  };
-  const handleOnAdd = () => {
-    const carrito = { ...product, cantidad: contador };
-    console.log(carrito);
-  };
+  
   return (
+    
     <div className="CardItemDes">
       <div className="ItemDesContainer">
         <h2 className="ItemTitle">{product?.name}</h2>
@@ -34,18 +42,9 @@ const ItemDetail = ({ product }) => {
           <p className="Info">Precio: {product?.price}</p>
           <p className="Info">Cantidad: {product?.stock} unidades</p>
           <div>
-          <ItemCount
-            restar={handleRestar}
-            sumar={handleSumar}
-            contador={contador}
-          />
-          {contador > 0 ? (
-            <Link to="/cart"><button className="Button" onClick={handleOnAdd}>
-              Agregar al carrito
-            </button> </Link>
-          ) : (
-            <p className="Cantidad"> Elija cantidad</p>
-          )}
+          {!buy ? <ItemCount stock = {product?.stock} onAdd ={(qty) => handleBuy(qty)} />
+         : <Link to="/Cart"><button className="Button" onClick={handlePurchase}> Ver Carrito</button> </Link> 
+          }
         </div>
         
         </div>
