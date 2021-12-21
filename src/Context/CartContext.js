@@ -50,25 +50,27 @@ const CartContextProvider = ({children}) => {
     } 
         
 
-
-       
-    
-
-       
-    
-
     const clearCart = () => {
         //remover todos los items
         setCart([])
     }
 
     
+    const sumarTotal = () => {
+        let total = 0;
 
+        cart.forEach((producto) => {
+           total += (producto.item.price * producto.cantidad);
+        });
+    
+        
+        return total;
+    }
 
     return ( 
             <CartContext.Provider value={{ 
                 cart, 
-                addItem, removeItem, clearCart, getCantidad 
+                addItem, removeItem, clearCart, getCantidad, sumarTotal 
                 }}> 
             {children}
             </CartContext.Provider>

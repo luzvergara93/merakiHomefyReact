@@ -10,6 +10,7 @@ import { CartContext } from "../../Context/CartContext"
 const NavBar = () => {
 
     const {getCantidad} = useContext(CartContext);
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light">
             <div className="container-fluid">
@@ -29,10 +30,11 @@ const NavBar = () => {
                 </div>
                 
                 </div>
-                <Link to = "/Cart"> <CartWidget /> </Link>
+                {getCantidad() <= 0 ? <span> </span> :
                 <div className='number'>
-                    <span> {getCantidad()} </span>
-                </div>
+                <Link to = "/Cart"><CartWidget /></Link>
+                    <span className="quantity"> {getCantidad()} </span>
+                </div>}
             </div>
         </nav>
     )

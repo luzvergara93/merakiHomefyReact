@@ -21,6 +21,7 @@ const ItemDetail = ({ product }) => {
   const handleBuy = (qty) => {
     setBuy(true);
     setQty(qty);
+    
   }
 
   const handlePurchase = () => {
@@ -40,10 +41,10 @@ const ItemDetail = ({ product }) => {
           <p className="Description"> {product?.description}</p>
           <p className="Info">Categoria: {product?.category}</p>
           <p className="Info">Precio: {product?.price}</p>
-          <p className="Info">Cantidad: {product?.stock} unidades</p>
+          <p className="Info">Cantidad:{product?.stock}unidades</p>
           <div>
           {!buy ? <ItemCount stock = {product?.stock} onAdd ={(qty) => handleBuy(qty)} />
-         : <Link to="/Cart"><button className="Button" onClick={handlePurchase}> Ver Carrito</button> </Link> 
+         : <Link to="/Cart"><button className="Button" onClick={handlePurchase}>Terminar mi compra</button></Link> 
           }
         </div>
         
