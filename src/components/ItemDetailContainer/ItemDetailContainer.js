@@ -4,7 +4,8 @@ import { getProductById } from "../../products"
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
 import Loader from "../Loader/Loader"
-
+import {getDoc, doc} from 'firebase/firestore'
+import {db} from '../../services/firebase/firebase'
 
 const ItemDetailContainer = () => {
 
@@ -14,11 +15,20 @@ const ItemDetailContainer = () => {
 
 
     useEffect(() => {
-        getProductById(paramId).then(item => {
-            setProduct(item)
-        }).catch(err => {
-            console.log(err)
-        })
+
+        getDoc(doc(db, 'items', paramId)).then((querySnapshot) => {
+            const product = { id: querySnapshot.id, ...querySnapshot.data()}
+            setProduct(product)
+        }).catch((error) => {
+            console.log('Error searching item', error)
+        });
+
+        //consulta local
+        // getProductById(paramId).then(item => {
+        //     setProduct(item)
+        // }).catch(err => {
+        //     console.log(err)
+        // })
     
         return (() => {
             setProduct()
