@@ -1,6 +1,6 @@
 import ItemList from "../ItemList/ItemList"
 import './ItemListContainer.css'
-import { getProductByCategory, getProductById, getProducts } from "../../products"
+// import { getProductByCategory, getProductById, getProducts } from "../../products"
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Loader from "../Loader/Loader"

@@ -2,14 +2,53 @@ import './NavBar.css'
 import logo2 from '../logo.jpg';
 import CartWidget from '../CartWidget/CartWidget'
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useState, useEffect  } from 'react';
 import { CartContext } from "../../Context/CartContext"
+import { db } from '../../services/firebase/firebase'
+import {getDocs, collection} from 'firebase/firestore'
+import Login from '../Login/Login';
 
-
+import UserContext from '../../Context/userContext'
+import NotificationContext from '../../Context/NotificationContext'
 
 const NavBar = () => {
 
+    const [categories, setCategories] = useState([])
+    const { user, logout } = useContext(UserContext)
+    const { setNotification } = useContext(NotificationContext)
+
     const {getCantidad} = useContext(CartContext);
+
+    useEffect(() => {
+        (async () => {
+           try {
+            const querySnapshot = await getDocs(collection(db, 'categories'))
+            const categories = querySnapshot.docs.map(doc => {
+                return { id: doc.id, ...doc.data() }
+            })
+            console.log(categories)
+            setCategories(categories)
+        } catch (error) {
+            console.log('Error searching categories:', error)
+        }})()
+        
+        
+
+    // useEffect(() => {
+    //     getDocs(collection(db, 'categories')).then((querySnapshot) => {
+    //         const categories = querySnapshot.docs.map(doc => {
+    //             return {id: doc.id, ...doc.data() }
+    //         })
+    //         console.log(categories)
+    //         setCategories(categories)
+    //     })
+    },[])
+
+    const handleLogout = () => {
+        logout()
+        setNotification('error', `Hasta luego ${user}`)
+    }
+
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light">
@@ -29,6 +68,14 @@ const NavBar = () => {
                     
                 </div>
                 
+                </div>
+                <div>
+                {
+                 user ?
+                 <button onClick={handleLogout} className='login'>Logout</button>
+                 : <Link to='/login' className='login'>Login</Link>
+                }      
+                    
                 </div>
                 {getCantidad() <= 0 ? <span> </span> :
                 <div className='number'>

@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app'
 import {getFirestore} from 'firebase/firestore'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyD_hFOoUhaKAExRprhuoRCT99x4sodyBfE",
-    authDomain: "app-merakihomefy-bb020.firebaseapp.com",
-    projectId: "app-merakihomefy-bb020",
-    storageBucket: "app-merakihomefy-bb020.appspot.com",
-    messagingSenderId: "198485648048",
-    appId: "1:198485648048:web:46a2a27f79bf4fd3835175"
+    apiKey: process.env.REACT_APP_apiKey,
+    authDomain: process.env.REACT_APP_appDomain,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId
   };
 
   const app = initializeApp(firebaseConfig);
