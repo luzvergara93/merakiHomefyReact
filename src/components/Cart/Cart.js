@@ -40,9 +40,9 @@ const Cart = () => {
 
     objOrder.items.forEach((prod) => {
         getDoc(doc(db, 'items', prod.id)).then((docSnap) => {
-            if(docSnap.data().stock >= prod.qty) {
+            if(docSnap.data().stock >= prod.cantidad) {
                 batch.update(doc(db, 'items', docSnap.id), {
-                    stock: docSnap.data().stock - prod.qty,
+                    stock: docSnap.data().stock - prod.cantidad,
                 });
             } else {
                 NoStock.push({ id: docSnap.id, ...docSnap.data() });
@@ -51,10 +51,9 @@ const Cart = () => {
     });
 
     if(NoStock.length === 0){
-        addDoc(collection(db, 'orders'), objOrder)
-        .then((doc) => {
+        addDoc(collection(db, 'orders'), objOrder).then(({id}) => {
             batch.commit().then(() => {
-                setNotification('success', `El id de su orden es: ${doc.id}`);
+                setNotification('success', 'El id de su orden es', id);
             })
         }).catch((error) => {
             setNotification('error', `Error ejecutando la orden: ${error}` )
