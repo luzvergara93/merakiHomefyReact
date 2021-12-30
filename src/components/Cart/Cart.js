@@ -35,11 +35,15 @@ const Cart = () => {
             date: Timestamp.fromDate(new Date())
         }
 
+        // addDoc(collection(db, 'orders'), objOrder).then(({id}) => {
+        //         console.log(id)
+        //     }) 
+        
     const batch = writeBatch(db) 
     const NoStock = [];
 
     objOrder.items.forEach((prod) => {
-        getDoc(doc(db, 'items', prod.id)).then((docSnap) => {
+        getDoc(doc(db, 'items', prod.item.id)).then((docSnap) => {
             if(docSnap.data().stock >= prod.cantidad) {
                 batch.update(doc(db, 'items', docSnap.id), {
                     stock: docSnap.data().stock - prod.cantidad,
@@ -53,7 +57,7 @@ const Cart = () => {
     if(NoStock.length === 0){
         addDoc(collection(db, 'orders'), objOrder).then(({id}) => {
             batch.commit().then(() => {
-                setNotification('success', 'El id de su orden es', id);
+                setNotification('success', `El id de su orden es ${id}`);
             })
         }).catch((error) => {
             setNotification('error', `Error ejecutando la orden: ${error}` )
@@ -113,7 +117,7 @@ const Cart = () => {
                             email
                         <input
                             className='InputLogin'
-                            type='email'
+                            type='text'
                             name='email'
                            value={email}
                             onChange={({ target }) => setEmail(target.value)}
@@ -132,7 +136,7 @@ const Cart = () => {
                         
                     </form>
 
-                    <button onClick={confirmOrder}> Finalizar compra</button>
+                    <button className="btn btn-primary" onClick={confirmOrder}> Finalizar compra</button>
          </div>
             )}
         </div> 
