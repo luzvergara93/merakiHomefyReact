@@ -1,15 +1,72 @@
 import React from 'react';
-import { useContext } from 'react';
+import { useState, useContext, useRef } from 'react';
 import { CartContext } from '../../Context/CartContext';
 import './Cart.css';
 import { Link } from 'react-router-dom';
+import {addDoc, collection, Timestamp, doc, writeBatch, getDoc} from 'firebase/firestore'
+import {db} from '../../services/firebase/firebase'
+import UserContext from '../../Context/userContext'
+import NotificationContext from '../../Context/NotificationContext'
 
 const Cart = () => {
-
     const {cart, removeItem, clearCart, sumarTotal} = useContext (CartContext);
 
+    const [phone, setPhone] = useState('')
+    const [email, setEmail] = useState('')
+    const [comment, setComment] = useState('')
+
+    const [processingOrder, setProcessingOrder] = useState(false)
 
     
+    const { user} = useContext(UserContext)
+    const {setNotification} = useContext(NotificationContext)
+   
+
+    const confirmOrder = () => {
+        setProcessingOrder(true)
+
+        const objOrder = {
+            buyer: user,
+            items: cart,
+            total: sumarTotal(),
+            phone: phone,
+            email: email,
+            comment: comment,
+            date: Timestamp.fromDate(new Date())
+        }
+
+        // addDoc(collection(db, 'orders'), objOrder).then(({id}) => {
+        //         console.log(id)
+        //     }) 
+        
+    const batch = writeBatch(db) 
+    const NoStock = [];
+
+    objOrder.items.forEach((prod) => {
+        getDoc(doc(db, 'items', prod.item.id)).then((docSnap) => {
+            if(docSnap.data().stock >= prod.cantidad) {
+                batch.update(doc(db, 'items', docSnap.id), {
+                    stock: docSnap.data().stock - prod.cantidad,
+                });
+            } else {
+                NoStock.push({ id: docSnap.id, ...docSnap.data() });
+            }
+        })
+    });
+
+    if(NoStock.length === 0){
+        addDoc(collection(db, 'orders'), objOrder).then(({id}) => {
+            batch.commit().then(() => {
+                setNotification('success', `El id de su orden es ${id}`);
+            })
+        }).catch((error) => {
+            setNotification('error', `Error ejecutando la orden: ${error}` )
+        }).finally(() => {
+            setProcessingOrder(false)
+            clearCart()
+        });
+    }
+};
 
     return (
         <div>
@@ -36,11 +93,54 @@ const Cart = () => {
             </tbody>
             
         </table>
-        {cart <= 0 ? <div className="noItems"> <span> No tienes ningun producto </span> <Link to='/'> <button className="btn btn-outline-primary"> Volver al listado</button></Link></div>
-            : <button className="btn btn-warning" onClick={clearCart}> Vaciar Carrito </button>}
+
+      
+        {cart.length === 0 ? <div className="noItems"> <span> No tienes ningun producto </span> <Link to='/'> 
+        <button className="btn btn-outline-primary"> Volver al listado</button></Link></div>
+            : (<div> <button className="btn btn-warning" onClick={clearCart}> Cancelar compra </button> </div>)}
             <span className="total"> total: $ {sumarTotal()} </span>
-        </div>
+        
+        { cart.length > 0 &&
+           (<div> <form className='LoginForm'>
+                <h2> Ingresa tus datos de contacto para finalizar la compra </h2>
+                        <label className='LabelLogin'>
+                            Telefono
+                        <input
+                            className='InputLogin'
+                            type='text'
+                            name='Telefono'
+                           value={phone}
+                            onChange={({ target }) => setPhone(target.value)}
+                        />
+                        </label>
+                        <label className='LabelLogin'>
+                            email
+                        <input
+                            className='InputLogin'
+                            type='text'
+                            name='email'
+                           value={email}
+                            onChange={({ target }) => setEmail(target.value)}
+                        />
+                        </label>
+                        <label className='LabelLogin'>
+                            Comentario
+                        <input
+                            className='InputLogin'
+                            type='text'
+                            name="comentario"
+                            value={comment}
+                            onChange={({ target }) => setComment(target.value)}
+                        />
+                        </label>
+                        
+                    </form>
+
+                    <button className="btn btn-primary" onClick={confirmOrder}> Finalizar compra</button>
+         </div>
+            )}
+        </div> 
     )
 }
 
-export default Cart;
+export default Cart

@@ -16,3 +16,13 @@
     
 }
 
+.login {
+    width: auto;
+    padding: 12px;
+    font-size: 18px;
+    background: #263548;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #FFFFFF;
+    border: none;
+}

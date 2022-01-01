@@ -3,9 +3,12 @@ import ItemCount from "../ItemCount/ItemCount";
 import React, { useState, useContext } from "react";
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../Context/CartContext'
+import NotificationContext from '../../Context/NotificationContext'
 
 
 const ItemDetail = ({ product }) => {
+
+  const {setNotification} = useContext(NotificationContext)
 
   const {addItem} = useContext(CartContext);
 
@@ -26,6 +29,7 @@ const ItemDetail = ({ product }) => {
 
   const handlePurchase = () => {
     addItem(product, qty);
+    setNotification('success', `Agregado al carrito ${qty}`)
 
     }
   
@@ -40,7 +44,7 @@ const ItemDetail = ({ product }) => {
         <div className="ItemContainer">
           <p className="Description"> {product?.description}</p>
           <p className="Info">Categoria: {product?.category}</p>
-          <p className="Info">Precio: {product?.price}</p>
+          <p className="Info">Precio: $ {product?.price}</p>
           <p className="Info">Cantidad:{product?.stock}unidades</p>
           <div>
           {!buy ? <ItemCount stock = {product?.stock} onAdd ={(qty) => handleBuy(qty)} />
