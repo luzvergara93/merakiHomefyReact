@@ -10,9 +10,9 @@ An ID will be given to make sure the order was produced.
 
 ## What can you find in the code?
 
-> Components 
+### *Components* 
 
-### Cart.js 
+#### Cart.js 
 
 ##### Includes 
 
