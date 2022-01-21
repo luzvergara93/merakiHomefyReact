@@ -26,7 +26,7 @@ An ID will be given to make sure the order was produced.
 
 ##### Includes
 
-- The Shopping Cart icon, along with the number of products the buyer added to cart. 
+- The Shopping Cart icon, along with the number of products the buyer added to the cart 
 
 ### Navbar.js
 
@@ -35,7 +35,7 @@ An ID will be given to make sure the order was produced.
 - Navbar with links to filter the different categories
 - Brings user and logout from the UserContext
 - Brings notification from the NotificationContext
-- Brings setQuantity from the CartContext 
+- Brings setQuantity from the CartContext to be able to see the number of products in the cart
 
 ### ItemListContainer.js
 
@@ -69,7 +69,7 @@ An ID will be given to make sure the order was produced.
 ##### Includes
 
 - The body of the card including the description of each item along with its price, category and stock
-- The ItemCount.js and a Link to the cart, to finish the purchase
+- The ItemCount.js and a Link to the cart, to finish the purchase; when the number of products is selected, a button to go to the cart is enabled.
 
 ### ItemCount.js
 
