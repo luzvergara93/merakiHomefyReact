@@ -12,3 +12,21 @@
     float: right;
     margin-right: 50px;
 }
+
+.cancel {
+    background-color: #d4ae80;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #263548;
+    border-radius: 5px;
+    text-decoration: none;
+    border: none;
+    margin-top: 30px;
+}
+
+.orderData {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+}

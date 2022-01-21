@@ -1,0 +1,10 @@
+.shoppingCart {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #263548;
+}
+
+a {
+    text-decoration: none;
+}

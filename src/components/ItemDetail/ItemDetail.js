@@ -9,29 +9,15 @@ import NotificationContext from '../../Context/NotificationContext'
 const ItemDetail = ({ product }) => {
 
   const {setNotification} = useContext(NotificationContext)
-
   const {addItem} = useContext(CartContext);
-
-  // En value tengo todo lo que este en cache provider
-  // en lugar de value, puedo poner lo que necesite nada mas por ej {addItem}
-  // tambien lo tengo que pasar al return
-  
-  const [buy, setBuy] = useState(false);
-  const [qty, setQty] = useState(0);
+  const [quantity, setQuantity] = useState(0);
 
 
-
-  const handleBuy = (qty) => {
-    setBuy(true);
-    setQty(qty);
-    
+  const addToCart = (quantity) => {
+    setNotification('success', `Se agregaron ${quantity} items al carrito`)
+    setQuantity(quantity)
+    addItem(product, quantity)
   }
-
-  const handlePurchase = () => {
-    addItem(product, qty);
-    setNotification('success', `Agregado al carrito ${qty}`)
-
-    }
   
   return (
     
@@ -43,12 +29,11 @@ const ItemDetail = ({ product }) => {
         <img src={product?.img} alt={product?.name} className="Img" />
         <div className="ItemContainer">
           <p className="Description"> {product?.description}</p>
-          <p className="Info">Categoria: {product?.category}</p>
+          <p className="Info">Categoría: {product?.category}</p>
           <p className="Info">Precio: $ {product?.price}</p>
-          <p className="Info">Cantidad:{product?.stock}unidades</p>
           <div>
-          {!buy ? <ItemCount stock = {product?.stock} onAdd ={(qty) => handleBuy(qty)} />
-         : <Link to="/Cart"><button className="Button" onClick={handlePurchase}>Terminar mi compra</button></Link> 
+          { quantity === 0 ? <ItemCount stock={product.stock}  onAdd ={addToCart} />
+         : <Link to="/Cart"><button className="Button" > Ir al carrito</button></Link> 
           }
         </div>
         

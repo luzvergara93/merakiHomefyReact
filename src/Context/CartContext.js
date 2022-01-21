@@ -1,5 +1,3 @@
-//Este seria mi custom context
-
 import React, { createContext, useState } from 'react' ;
 
 export const CartContext = createContext();
@@ -7,39 +5,36 @@ export const CartContext = createContext();
 const CartContextProvider = ({children}) => {
     const [ cart, setCart ] = useState([]);
 
-    const getCantidad = () => {
+    const getQuantity = () => {
         let subTotal = 0;
-        cart.forEach(elemento => {
-            // console.log(elemento);
-            subTotal += elemento.cantidad
+        cart.forEach(element => {
+            subTotal += element.cantidad
         })
         return subTotal;
     }
 
-    const addItem = (product, quantity) => {
-        const flag = isInCart(product);
 
-        if(flag){
-            let productoRepetido = cart.find (elemento => elemento.item === product);
+    const addItem = (product, quantity) => {
+
+        const flag = isInCart(product.id);
+        
+        if (flag) {
+            let productoRepetido = cart.find (elemento => elemento.item.id === product.id);
             productoRepetido.cantidad += quantity;
-            let cartSinRepetido = cart.filter(elemento => elemento.item !== product);
+            let cartSinRepetido = cart.filter (elemento => elemento.item.id !== product.id);
             setCart([...cartSinRepetido, productoRepetido]);
-        }else{
+        } else {
             setCart([...cart, {item: product, cantidad: quantity}]);
         }
+    }
+
+    const isInCart = (product) => {
         
+        return cart.some(elemento => elemento.item.id === product);
+    
     }
-
-    const isInCart = (item) => {
-        //true or false
-        return cart.some(product => product.item === item);
-    }
-
-
-
 
    const removeItem = (id) => {
-    
     let newArr = cart.filter(product => product.item.id !== id);
 
     newArr.splice(
@@ -51,16 +46,14 @@ const CartContextProvider = ({children}) => {
         
 
     const clearCart = () => {
-        //remover todos los items
         setCart([])
     }
 
-    
-    const sumarTotal = () => {
+    const addTotal = () => {
         let total = 0;
 
-        cart.forEach((producto) => {
-           total += (producto.item.price * producto.cantidad);
+        cart.forEach((product) => {
+           total += (product.item.price * product.cantidad);
         });
     
         
@@ -70,7 +63,7 @@ const CartContextProvider = ({children}) => {
     return ( 
             <CartContext.Provider value={{ 
                 cart, 
-                addItem, removeItem, clearCart, getCantidad, sumarTotal 
+                addItem, removeItem, clearCart, getQuantity, addTotal 
                 }}> 
             {children}
             </CartContext.Provider>
