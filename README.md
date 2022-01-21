@@ -131,7 +131,7 @@ In orders you will find all the different purchases the user makes, with the ids
 
 ## Basic App Flow
 
-![App Flow](/assets/App_Flow.gif)
+![App Flow](/assets/appFlow.gif)
 
 
 
