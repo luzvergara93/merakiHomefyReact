@@ -24,20 +24,20 @@ An ID will be given to make sure the order was produced.
 - A form to introduce data used to create the order
 - A button to finally make the order
 
-### CartWidget.js 
+#### CartWidget.js 
 
 ##### Includes
 
 - The Shopping Cart icon, along with the number of products the buyer added to the cart 
 
-### ContactForm.js
+#### ContactForm.js
 
 ##### Includes
 
 - Contact Form, used in the final steps of the purchase
 - Function to set the data the user introduces
 
-### Navbar.js
+#### Navbar.js
 
 ##### Includes
 
@@ -46,7 +46,7 @@ An ID will be given to make sure the order was produced.
 - Brings notification from the NotificationContext
 - Brings setQuantity from the CartContext to be able to see the number of products in the cart
 
-### ItemListContainer.js
+#### ItemListContainer.js
 
 ##### Includes
 
@@ -54,33 +54,33 @@ An ID will be given to make sure the order was produced.
 - Function to get the list of products available on the app
 - Loader
 
-### ItemList.js
+#### ItemList.js
 
 ##### Includes
 
 - Mapping of the list of products 
 
-### Item.js
+#### Item.js
 
 ##### Includes
 
 - The body of a card, in order to show the different items with their images
 - A Link that goes to the description of each item
 
-### ItemDetailContainer.js
+#### ItemDetailContainer.js
 
 ##### Includes
 
 - GetDoc function to get the description of each item
 
-### ItemDetail.js
+#### ItemDetail.js
 
 ##### Includes
 
 - The body of the card including the description of each item along with its price, category and stock
 - The ItemCount.js and a Link to the cart, to finish the purchase; when the number of products is selected, a button to go to the cart is enabled.
 
-### ItemCount.js
+#### ItemCount.js
 
 ##### Includes
 
@@ -88,28 +88,28 @@ An ID will be given to make sure the order was produced.
 - It has functions to add and subtract, and also lets the buyer know when a product is out of stock
 - A button for adding the quantity chosen, to cart
 
-### Loader.js
+#### Loader.js
 
 ##### Includes
 
 - A loader used in various components, in order to avoid waiting for the functions to load with a blank page.
 
-### Login.js
+#### Login.js
 
 ##### Includes
 
 - Login Form
 - Function to set username and password
 
-### Notification.js
+#### Notification.js
 
 ##### Includes
 
 - Function to set a notification; this is used in various components when needed
 
-> Context
+### *Context*
 
-### CartContext
+#### CartContext
 
 ##### Functions
 
@@ -120,30 +120,30 @@ An ID will be given to make sure the order was produced.
 - clearCart: to remove all items from cart
 - addTotal: to calculate the total price of the purchase so far
 
-### NotificationContext
+#### NotificationContext
 
 It is the context that allows us to set the different notifications, depending its use
 
-### UserContext 
+#### UserContext 
 
 It is the context for the log in
 
-> Services
+### *Services*
 
-## Where is the database from?
+### Where is the database from?
 
-### Firestore
+#### Firestore
 
 A database service is used, to get the products, and to store the orders.
 If you are not familiar with Firebase you can read the documentation [here](https://firebase.google.com/docs/firestore).
 
 Firestore makes it easy to have everything under control. 
 
-#### What do you have to do in order to make it work?
+##### What do you have to do in order to make it work?
 
 You have to config a .env document in which you will have your credentials.
 
-#### Cloud Firebase
+##### Firestore Database
 
 Here you have the database of the app, in which you can find three collections: categories, items and orders.
 
@@ -167,7 +167,7 @@ In orders you will find all the different purchases the user makes, with the ids
 -phone: also from the ContactForm
 -total: the total price of the purchase
 
-## Routing
+### *Routing*
 
 - When going to '/category/:category', the route will filter the category written
 - When going to '/detail/:paramId', the route will filter the item with the given id
