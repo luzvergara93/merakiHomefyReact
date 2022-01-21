@@ -148,6 +148,7 @@ In orders you will find all the different purchases the user makes, with the ids
 
 
 
+
 ## Getting Started with my App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
