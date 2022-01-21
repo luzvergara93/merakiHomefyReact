@@ -10,7 +10,9 @@ An ID will be given to make sure the order was produced.
 
 ## What can you find in the code?
 
-### Cart 
+> Components 
+
+### Cart.js 
 
 ##### Includes 
 
@@ -22,11 +24,18 @@ An ID will be given to make sure the order was produced.
 - A form to introduce data used to create the order
 - A button to finally make the order
 
-### CartWidget 
+### CartWidget.js 
 
 ##### Includes
 
 - The Shopping Cart icon, along with the number of products the buyer added to the cart 
+
+### ContactForm.js
+
+##### Includes
+
+- Contact Form, used in the final steps of the purchase
+- Function to set the data the user introduces
 
 ### Navbar.js
 
@@ -85,6 +94,41 @@ An ID will be given to make sure the order was produced.
 
 - A loader used in various components, in order to avoid waiting for the functions to load with a blank page.
 
+### Login.js
+
+##### Includes
+
+- Login Form
+- Function to set username and password
+
+### Notification.js
+
+##### Includes
+
+- Function to set a notification; this is used in various components when needed
+
+> Context
+
+### CartContext
+
+##### Functions
+
+- getQuantity: to get the quantity of each item
+- addItem: to add the item to cart
+- isInCart: verifies if any item is already in cart to avoid duplicates
+- removeItem: to remove one item from cart
+- clearCart: to remove all items from cart
+- addTotal: to calculate the total price of the purchase so far
+
+### NotificationContext
+
+It is the context that allows us to set the different notifications, depending its use
+
+### UserContext 
+
+It is the context for the log in
+
+> Services
 
 ## Where is the database from?
 
