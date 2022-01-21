@@ -131,7 +131,7 @@ In orders you will find all the different purchases the user makes, with the ids
 
 ## Basic App Flow
 
-![App Flow](https://github.com/luzvergara93/merakiHomefyReact/blob/Luz2/public/assets/appFlow.gif?raw=true)
+![App Flow] (https://github.com/luzvergara93/merakiHomefyReact/blob/Luz2/public/assets/appFlow.gif?raw=true)
 
 
 
