@@ -93,7 +93,7 @@ An ID will be given to make sure the order was produced.
 A database service is used, to get the products, and to store the orders.
 If you are not familiar with Firebase you can read the documentation [here](https://firebase.google.com/docs/firestore).
 
-Firestore makes it easy to have everything under control. We use the ID  given to ensure everything works well.
+Firestore makes it easy to have everything under control. 
 
 #### What do you have to do in order to make it work?
 
@@ -105,7 +105,7 @@ Here you have the database of the app, in which you can find three collections: 
 
 Regarding items, in order for them to work in this app, they have to accomplish the following fields: 
 
--Id : **string** we use the id given by Firebase
+-Id : **string** we use the id given by Firebase to ensure everything works well.
 -category: **string** choose between one of the categories collection
 -description: **string** a brief description used in ItemDetail 
 -img: **string** img route
@@ -137,19 +137,7 @@ In orders you will find all the different purchases the user makes, with the ids
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-## Getting Started with my App
+## How to start using my App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
