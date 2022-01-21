@@ -4,35 +4,52 @@
 
 This project was made for a Decoration Brand, as an e-commerce
 
+With this App, the client can choose among different products, see the details of each of them, and select a quantity to buy.
+Then, by clicking into the Cart Widget, they can see the order, complete the personal data, and finish the purchase.
+An ID will be given to make sure the order was produced.
+
 ## What can you find in the code?
 
-### Products.js
+### Cart 
+
+##### Includes 
+
+- The body of the Cart, which brings functions from the CartContext to make it work
+- The list of products the buyer wants to purchase
+- The price of the whole purchase
+- A delete button beside each item 
+- A button to empty the cart
+- A form to introduce data used to create the order
+- A button to finally make the order
+
+### CartWidget 
 
 ##### Includes
 
-- Object with list of products and their descriptions
-- Function: getProducts(): returns the list of products
-- Function: getItem(): returns one item
-- Function: getProductById(): returns the product correspondent to the requested id
-- Function: getProductByCategory(): returns the product correspondent to the requested category
+- The Shopping Cart icon, along with the number of products the buyer added to cart. 
 
 ### Navbar.js
 
 ##### Includes
 
 - Navbar with links to filter the different categories
+- Brings user and logout from the UserContext
+- Brings notification from the NotificationContext
+- Brings setQuantity from the CartContext 
 
 ### ItemListContainer.js
 
 ##### Includes
 
+- Brings categories using GetProducts function from Firebase
 - Function to get the list of products available on the app
+- Loader
 
 ### ItemList.js
 
 ##### Includes
 
-- Function to obtain the different items
+- Mapping of the list of products 
 
 ### Item.js
 
@@ -45,13 +62,76 @@ This project was made for a Decoration Brand, as an e-commerce
 
 ##### Includes
 
-- Function to get the description of each item
+- GetDoc function to get the description of each item
 
 ### ItemDetail.js
 
 ##### Includes
 
-- The body of the card including the description of each item
+- The body of the card including the description of each item along with its price, category and stock
+- The ItemCount.js and a Link to the cart, to finish the purchase
+
+### ItemCount.js
+
+##### Includes
+
+- The counter that allows the buyer to decide the quantity of each item to buy
+- It has functions to add and subtract, and also lets the buyer know when a product is out of stock
+- A button for adding the quantity chosen, to cart
+
+### Loader.js
+
+##### Includes
+
+- A loader used in various components, in order to avoid waiting for the functions to load with a blank page.
+
+
+## Where is the database from?
+
+### Firestore
+
+A database service is used, to get the products, and to store the orders.
+If you are not familiar with Firebase you can read the documentation [here](https://firebase.google.com/docs/firestore).
+
+Firestore makes it easy to have everything under control. We use the ID  given to ensure everything works well.
+
+#### What do you have to do in order to make it work?
+
+You have to config a .env document in which you will have your credentials.
+
+#### Cloud Firebase
+
+Here you have the database of the app, in which you can find three collections: categories, items and orders.
+
+Regarding items, in order for them to work in this app, they have to accomplish the following fields: 
+
+-Id : **string** we use the id given by Firebase
+-category: **string** choose between one of the categories collection
+-description: **string** a brief description used in ItemDetail 
+-img: **string** img route
+-name: **string** 
+-price: **number** 
+-stock: **number**
+
+In orders you will find all the different purchases the user makes, with the ids and the user data:
+
+-buyer: the user (name used when logged in)
+-comment: comment written in the ContactForm
+-date: automatic
+-email: also from the ContactForm
+-items: a list of the selected items for the purchase
+-phone: also from the ContactForm
+-total: the total price of the purchase
+
+## Routing
+
+- When going to '/category/:category', the route will filter the category written
+- When going to '/detail/:paramId', the route will filter the item with the given id
+
+
+## Basic App Flow
+
+![App Flow](/assets/App_Flow.gif)
 
 
 
@@ -139,4 +219,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-##

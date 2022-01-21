@@ -19,7 +19,7 @@
     margin: 10px;
 }
 
-.Contador {
+.CounterContainer {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -27,7 +27,7 @@
     align-items: center;
 }
 
-.Contador button {
+.CounterContainer button {
     
     font-size: 18px;
     background: #263548;
@@ -37,7 +37,7 @@
     
 }
 
-.Contador p {
+.CounterContainer p {
     font-size: 24px;
 }
 

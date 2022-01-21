@@ -22,7 +22,7 @@ const Login = () => {
         }
 
         login(objUser)
-        setNotification('success', `Bienvenido ${objUser.username}`)
+        setNotification('success', `Bienvenido a Meraki, ${objUser.username}`)
 
         navigate('/')
     }

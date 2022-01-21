@@ -9,26 +9,18 @@ import {db} from '../../services/firebase/firebase'
 const ItemDetailContainer = () => {
 
     const [product, setProduct] = useState()
-    
     const {paramId} = useParams()
-
 
     useEffect(() => {
 
         getDoc(doc(db, 'items', paramId)).then((querySnapshot) => {
             const product = { id: querySnapshot.id, ...querySnapshot.data()}
             setProduct(product)
+            
         }).catch((error) => {
             console.log('Error searching item', error)
         });
 
-        //consulta local
-        // getProductById(paramId).then(item => {
-        //     setProduct(item)
-        // }).catch(err => {
-        //     console.log(err)
-        // })
-    
         return (() => {
             setProduct()
         })
@@ -36,17 +28,13 @@ const ItemDetailContainer = () => {
 
     return (
         <div className="ItemDetailContainer">
-             
             { product !== undefined ?
                 <ItemDetail product={product}/>
             :
             <Loader/>
             }
-            
-         
         </div>
     )
-
 }
 
 export default ItemDetailContainer
